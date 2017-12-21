@@ -74,15 +74,7 @@ public class plantvsigame extends ApplicationAdapter {
 			batch.draw(bulletT,currentBullet.bulletlocation.x,currentBullet.bulletlocation.y);
 			count++;
 		}
-		int amoutenemy = 30;
-		while(amoutenemy > 0 ) 
-		{
-			
-			Enemy currentEnemy = enemyManager.get(amoutenemy);
-			currentEnemy.Update();
-			batch.draw(enemyT,shooterlocation.x+700,shooterlocation.y+MathUtils.random(200,400));
-			amoutenemy--;
-		}
+		
 		
 		batch.end();
 	}
