@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -12,14 +14,15 @@ public class plantvsigame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture shooter;
 	Texture background;
-	Texture bullet;
+	Texture bulletT;
 	
 	float screenwidth;
 	float screenheight;
 	
 	Vector2 shooterlocation = new Vector2(0,0);
 	
-	Bullet testbullet = new Bullet(shooterlocation,new Vector2(10,0));
+	
+	ArrayList<Bullet> bulletManager = new ArrayList<Bullet>();
 	
 	@Override
 	public void create () {
@@ -29,7 +32,7 @@ public class plantvsigame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		shooter= new Texture("shooter.png");
 		background = new Texture("frontyard.jpg");
-		bullet = new Texture("bullet.png");
+		bulletT = new Texture("bullet.png");
 		shooterlocation = new Vector2(265,(screenheight/2)-(shooter.getHeight()/2));
 	}
 
@@ -42,21 +45,33 @@ public class plantvsigame extends ApplicationAdapter {
 		
 			shooterlocation.y = shooterlocation.y - 3;
 		}
+		if(Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+			Bullet myBullet = new Bullet(shooterlocation,new Vector2(4,0));
+			bulletManager.add(myBullet);
+		}
 		
-			
 		
 	}
 	
 	@Override
 	public void render () {
 		update();
-		testbullet.Update();
+		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(background,0,0);
 		batch.draw(shooter,shooterlocation.x, shooterlocation.y);
-		batch.draw(bullet,testbullet.bulletlocation.x,testbullet.bulletlocation.y);
+		
+		int count = 0;
+		while(count < bulletManager.size()) 
+		{
+			Bullet currentBullet = bulletManager.get(count);
+			currentBullet.Update();
+			batch.draw(bulletT,currentBullet.bulletlocation.x,currentBullet.bulletlocation.y);
+			count++;
+		}
+		
 		batch.end();
 	}
 	
