@@ -1,8 +1,8 @@
 package com.mygdx.game;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -14,6 +14,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer.Random;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+
+
 
 public class plantvsigame extends ApplicationAdapter {
 	SpriteBatch batch;
