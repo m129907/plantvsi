@@ -61,7 +61,7 @@ public class plantvsigame extends ApplicationAdapter {
 		
 		if(Gdx.input.isKeyJustPressed(Keys.E)) {
 			
-		Enemy myEnemy = new Enemy(shooterlocation,new Vector2(-2,0));
+		Enemy myEnemy = new Enemy(shooterlocation,new Vector2(-3,0));
 		enemyManager.add(myEnemy);
 		
 		 }
@@ -92,16 +92,19 @@ public class plantvsigame extends ApplicationAdapter {
 			currentBullet.Update();
 			batch.draw(bulletT,currentBullet.bulletlocation.x,currentBullet.bulletlocation.y);
 			count++;
+			if(count==5) {
+			}
 		}
 		int counter = 0;
 		while(counter < enemyManager.size())
 		{
 			Enemy currentEnemy = enemyManager.get(counter);
 			currentEnemy.Update();
-			batch.draw(enemyT,currentEnemy.enemylocation.x+800,currentEnemy.enemylocation.y+50);
-			batch.draw(enemyT,currentEnemy.enemylocation.x+800,currentEnemy.enemylocation.y-50);
+			batch.draw(enemyT,currentEnemy.enemylocation.x+800,currentEnemy.enemylocation.y+80);
+			batch.draw(enemyT,currentEnemy.enemylocation.x+800,currentEnemy.enemylocation.y-65);
 			
 			counter++;
+			
 		}
 		
 		
