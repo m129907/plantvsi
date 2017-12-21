@@ -31,7 +31,7 @@ public class plantvsigame extends ApplicationAdapter {
 	Vector2 monsterlocation = new Vector2(0,0);
 	
 	ArrayList<Bullet> bulletManager = new ArrayList<Bullet>();
-	
+	ArrayList<Bullet2> bullet2Manager = new ArrayList<Bullet2>();
 	
 	@Override
 	public void create () {
@@ -50,11 +50,11 @@ public class plantvsigame extends ApplicationAdapter {
 	}
 
 	public void update () throws InterruptedException {
-		if(Gdx.input.isKeyPressed(Keys.UP)) {
+		if(Gdx.input.isKeyPressed(Keys.W)) {
 			
 			shooterlocation.y = shooterlocation.y + 5;
 		}
-		if(Gdx.input.isKeyPressed(Keys.DOWN)) {
+		if(Gdx.input.isKeyPressed(Keys.S)) {
 		
 			shooterlocation.y = shooterlocation.y - 5;
 		}
@@ -62,7 +62,18 @@ public class plantvsigame extends ApplicationAdapter {
 			Bullet myBullet = new Bullet(shooterlocation,new Vector2(4,0));
 			bulletManager.add(myBullet);
 		}
+		if(Gdx.input.isKeyPressed(Keys.UP)) {
+			
+			monsterlocation.y = monsterlocation.y + 5;
+		}
+		if(Gdx.input.isKeyPressed(Keys.DOWN)) {
 		
+			monsterlocation.y = monsterlocation.y - 5;
+		}
+		if(Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+			Bullet2 myBullet2 = new Bullet2(monsterlocation,new Vector2(-4,0));
+			bullet2Manager.add(myBullet2);
+		}
 	
 	}
 	
@@ -91,6 +102,15 @@ public class plantvsigame extends ApplicationAdapter {
 			currentBullet.Update();
 			batch.draw(bulletT,currentBullet.bulletlocation.x,currentBullet.bulletlocation.y);
 			count++;
+			
+		}
+		int counter = 0;
+		while(counter < bullet2Manager.size()) 
+		{
+			Bullet2 currentBullet2 = bullet2Manager.get(counter);
+			currentBullet2.Update();
+			batch.draw(bullet2T,currentBullet2.bullet2location.x,currentBullet2.bullet2location.y);
+			counter++;
 			
 		}
 		
