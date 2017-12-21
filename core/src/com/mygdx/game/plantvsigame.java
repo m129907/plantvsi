@@ -17,7 +17,8 @@ public class plantvsigame extends ApplicationAdapter {
 	Texture shooter;
 	Texture background;
 	Texture bulletT;
-	Texture enemyT;
+	Texture monster;
+	Texture bullet2T;
 	
 	int amoutx = 30;
 	Random r = new Random();
@@ -27,10 +28,10 @@ public class plantvsigame extends ApplicationAdapter {
 	float screenheight;
 	
 	Vector2 shooterlocation = new Vector2(0,0);
-	
+	Vector2 monsterlocation = new Vector2(0,0);
 	
 	ArrayList<Bullet> bulletManager = new ArrayList<Bullet>();
-	ArrayList<Enemy> enemyManager = new ArrayList<Enemy>();
+	
 	
 	@Override
 	public void create () {
@@ -41,8 +42,11 @@ public class plantvsigame extends ApplicationAdapter {
 		shooter= new Texture("shooter.png");
 		background = new Texture("frontyard.jpg");
 		bulletT = new Texture("bullet.png");
-		enemyT = new Texture("enemy.png");
+		monster = new Texture("monster.png");
+		bullet2T = new Texture("bullet2.png");
+		
 		shooterlocation = new Vector2(265,(screenheight/2)-(shooter.getHeight()/2));
+		monsterlocation = new Vector2(905,(screenheight/2)-(shooter.getHeight()/2));
 	}
 
 	public void update () throws InterruptedException {
@@ -59,13 +63,7 @@ public class plantvsigame extends ApplicationAdapter {
 			bulletManager.add(myBullet);
 		}
 		
-		if(Gdx.input.isKeyJustPressed(Keys.E)) {
-			
-		Enemy myEnemy = new Enemy(shooterlocation,new Vector2(-3,0));
-		enemyManager.add(myEnemy);
-		
-		 }
-		
+	
 	}
 	
 	@Override
@@ -84,6 +82,7 @@ public class plantvsigame extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(background,0,0);
 		batch.draw(shooter,shooterlocation.x, shooterlocation.y);
+		batch.draw(monster,monsterlocation.x,monsterlocation.y);
 		
 		int count = 0;
 		while(count < bulletManager.size()) 
@@ -92,18 +91,6 @@ public class plantvsigame extends ApplicationAdapter {
 			currentBullet.Update();
 			batch.draw(bulletT,currentBullet.bulletlocation.x,currentBullet.bulletlocation.y);
 			count++;
-			if(count==5) {
-			}
-		}
-		int counter = 0;
-		while(counter < enemyManager.size())
-		{
-			Enemy currentEnemy = enemyManager.get(counter);
-			currentEnemy.Update();
-			batch.draw(enemyT,currentEnemy.enemylocation.x+800,currentEnemy.enemylocation.y+80);
-			batch.draw(enemyT,currentEnemy.enemylocation.x+800,currentEnemy.enemylocation.y-65);
-			
-			counter++;
 			
 		}
 		
