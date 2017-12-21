@@ -12,11 +12,14 @@ public class plantvsigame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture shooter;
 	Texture background;
+	Texture bullet;
 	
 	float screenwidth;
 	float screenheight;
 	
 	Vector2 shooterlocation = new Vector2(0,0);
+	
+	Bullet testbullet = new Bullet(shooterlocation,new Vector2(10,0));
 	
 	@Override
 	public void create () {
@@ -26,27 +29,34 @@ public class plantvsigame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		shooter= new Texture("shooter.png");
 		background = new Texture("frontyard.jpg");
-		
+		bullet = new Texture("bullet.png");
 		shooterlocation = new Vector2(265,(screenheight/2)-(shooter.getHeight()/2));
 	}
 
 	public void update () {
 		if(Gdx.input.isKeyPressed(Keys.UP)) {
+			
 			shooterlocation.y = shooterlocation.y + 3;
 		}
 		if(Gdx.input.isKeyPressed(Keys.DOWN)) {
+		
 			shooterlocation.y = shooterlocation.y - 3;
 		}
+		
+			
+		
 	}
 	
 	@Override
 	public void render () {
 		update();
+		testbullet.Update();
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(background,0,0);
 		batch.draw(shooter,shooterlocation.x, shooterlocation.y);
+		batch.draw(bullet,testbullet.bulletlocation.x,testbullet.bulletlocation.y);
 		batch.end();
 	}
 	
