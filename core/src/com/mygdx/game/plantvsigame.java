@@ -8,6 +8,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 public class plantvsigame extends ApplicationAdapter {
@@ -15,6 +16,7 @@ public class plantvsigame extends ApplicationAdapter {
 	Texture shooter;
 	Texture background;
 	Texture bulletT;
+	Texture enemyT;
 	
 	float screenwidth;
 	float screenheight;
@@ -23,6 +25,7 @@ public class plantvsigame extends ApplicationAdapter {
 	
 	
 	ArrayList<Bullet> bulletManager = new ArrayList<Bullet>();
+	ArrayList<Enemy> enemyManager = new ArrayList<Enemy>();
 	
 	@Override
 	public void create () {
@@ -70,6 +73,15 @@ public class plantvsigame extends ApplicationAdapter {
 			currentBullet.Update();
 			batch.draw(bulletT,currentBullet.bulletlocation.x,currentBullet.bulletlocation.y);
 			count++;
+		}
+		int amoutenemy = 30;
+		while(amoutenemy > 0 ) 
+		{
+			
+			Enemy currentEnemy = enemyManager.get(amoutenemy);
+			currentEnemy.Update();
+			batch.draw(enemyT,shooterlocation.x+700,shooterlocation.y+MathUtils.random(200,400));
+			amoutenemy--;
 		}
 		
 		batch.end();

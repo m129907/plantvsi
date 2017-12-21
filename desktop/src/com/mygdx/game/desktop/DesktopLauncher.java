@@ -9,6 +9,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 	     config.width =1000;
 	     config.height = 600;
+	     config.title = "PlantVsI Dont give me I Senpaiiiiiiiiiiiiiiiiiiiiiii";
 		new LwjglApplication(new plantvsigame(), config);
 	}
 }
