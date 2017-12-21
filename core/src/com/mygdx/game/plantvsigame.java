@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer.Random;
 import com.badlogic.gdx.math.MathUtils;
@@ -19,6 +20,15 @@ public class plantvsigame extends ApplicationAdapter {
 	Texture bulletT;
 	Texture monster;
 	Texture bullet2T;
+	
+	private int score; 
+	private String scoreboard; 
+	BitmapFont scoreBitmapFont;
+	
+
+	private int score2; 
+	private String scoreboard2; 
+	BitmapFont scoreBitmapFont;
 	
 	int amoutx = 30;
 	Random r = new Random();
@@ -47,6 +57,14 @@ public class plantvsigame extends ApplicationAdapter {
 		
 		shooterlocation = new Vector2(265,(screenheight/2)-(shooter.getHeight()/2));
 		monsterlocation = new Vector2(905,(screenheight/2)-(shooter.getHeight()/2));
+		
+		score = (0);
+		scoreboard = ("score = 0");
+		scoreBitmapFont = new BitmapFont();
+		
+		score2 = (0);
+		scoreboard2 = ("score = 0");
+		scoreBitmapFont2 = new BitmapFont2();
 	}
 
 	public void update () throws InterruptedException {
@@ -113,6 +131,11 @@ public class plantvsigame extends ApplicationAdapter {
 			counter++;
 			
 		}
+		scoreBitmapFont.setColor(1,0,0,1);
+		scoreBitmapFont.draw(batch, scoreboard, 80,80);
+		
+		scoreBitmapFont2.setColor(1,0,0,1);
+		scoreBitmapFont2.draw(batch, scoreboard, 800,800);
 		
 		
 		batch.end();
