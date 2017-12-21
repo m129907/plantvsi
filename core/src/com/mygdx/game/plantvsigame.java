@@ -98,7 +98,9 @@ public class plantvsigame extends ApplicationAdapter {
 		{
 			Enemy currentEnemy = enemyManager.get(counter);
 			currentEnemy.Update();
-			batch.draw(enemyT,currentEnemy.enemylocation.x+1000,currentEnemy.enemylocation.y+random);
+			batch.draw(enemyT,currentEnemy.enemylocation.x+800,currentEnemy.enemylocation.y+50);
+			batch.draw(enemyT,currentEnemy.enemylocation.x+800,currentEnemy.enemylocation.y-50);
+			
 			counter++;
 		}
 		
