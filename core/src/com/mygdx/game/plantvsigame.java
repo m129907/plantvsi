@@ -2,6 +2,8 @@ package com.mygdx.game;
 
 import java.util.ArrayList;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -23,11 +25,6 @@ public class plantvsigame extends ApplicationAdapter {
 	
 	private int score; 
 	private String scoreboard; 
-	BitmapFont scoreBitmapFont;
-	
-
-	private int score2; 
-	private String scoreboard2; 
 	BitmapFont scoreBitmapFont;
 	
 	int amoutx = 30;
@@ -61,10 +58,6 @@ public class plantvsigame extends ApplicationAdapter {
 		score = (0);
 		scoreboard = ("score = 0");
 		scoreBitmapFont = new BitmapFont();
-		
-		score2 = (0);
-		scoreboard2 = ("score = 0");
-		scoreBitmapFont2 = new BitmapFont2();
 	}
 
 	public void update () throws InterruptedException {
@@ -134,11 +127,16 @@ public class plantvsigame extends ApplicationAdapter {
 		scoreBitmapFont.setColor(1,0,0,1);
 		scoreBitmapFont.draw(batch, scoreboard, 80,80);
 		
-		scoreBitmapFont2.setColor(1,0,0,1);
-		scoreBitmapFont2.draw(batch, scoreboard, 800,800);
-		
 		
 		batch.end();
+
+		Iterator<Bullet> itbullet = bulletManager.iterator();
+			while(itbullet.hasNext()) {
+			if(bullet.overlaps(monster)) {
+				itbullet.remove();
+				
+				}
+			}
 	}
 	
 	@Override
