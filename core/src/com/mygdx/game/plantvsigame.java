@@ -9,11 +9,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class plantvsigame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture shooter;
+	Texture background;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		shooter= new Texture("shooter.png");
+		background = new Texture("frontyard.jpg");
 	}
 
 	@Override
@@ -21,6 +23,7 @@ public class plantvsigame extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
+		batch.draw(background,0,0);
 		batch.draw(shooter, 0, 0);
 		batch.end();
 	}
